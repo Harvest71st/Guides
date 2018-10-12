@@ -1,1 +1,94 @@
-"Hello,Harvest" 
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="">
+<!--[if lt IE 9]>
+<script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link rel="shortcut icon" href="">
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<script type="text/javascript">
+window.onload = function(){
+    var ImageSources = {
+    "Floor1" : "https://drive.google.com/uc?export=view&id=1S53emZ9Zmc8Gkzp1mmbWK7qMtd-jZpKQ",
+    "Floor2" : "https://drive.google.com/uc?export=view&id=1hctluCp9vqIMiCPoLxngOf_bC1gylr_S",
+    "Floor3" : "https://drive.google.com/uc?export=view&id=1Hiyk51fhEGF7wVEXiOCEd-wzMrQciQsW",
+    "Floor4" : "",
+    };
+
+var urlParam = location.search.substring(1);
+if(urlParam != ""){
+    var param = urlParam.split("&");
+    var paramArray = [];
+
+    for (i=0;i<param.length;i++){
+        var paramItem = param[i].split("=");
+        paramArray[paramItem[0]] = paramItem[1];
+    }
+
+    if(urlParam.indexOf("locate=") != -1){
+        document.getElementById("ImgSource").src = ImageSources[paramArray["locate"]];
+    }
+}
+}
+
+</script>
+<style type="text/css">
+    #iframeBlock{
+        height:100%;
+        .iframeBody{
+            height:100%;
+            iframe{
+                border:none;
+                width:100%;
+                height:100%;
+                padding:0;
+                margin:0;
+            }
+        }
+    }
+</style>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">  
+                    <div class="mdl-layout__header-row">  
+                        <!-- Title -->  
+                        <span class="mdl-layout-title">FloorGuide</span>  
+                        <div class="mdl-layout-spacer"></div>  
+                    </div>  
+                </header>  
+                <div class="mdl-layout__drawer">  
+                    <span class="mdl-layout-title">FloorGuide</span>  
+                    <nav class="mdl-navigation">  
+                        <a class="mdl-navigation__link" href="?locate=Floor1">1F</a>  
+                        <a class="mdl-navigation__link" href="?locate=Floor2">2F</a>  
+                        <a class="mdl-navigation__link" href="?locate=Floor3">3F</a>  
+                        <a class="mdl-navigation__link" href="?locate=Floor4">4F</a>  
+                    </nav>  
+                </div>  
+                <main class="mdl-layout">
+                    <div id="iframeBlock">
+                        <div class="iframeBody">
+                                <iframe id="ImgSource" height="1000">
+        
+                                </iframe>
+                        </div>
+                    </div>
+                </main>
+    </div>
+      
+<!-- Place your content here -->
+<!-- SCRIPTS -->
+<!-- Example: <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+</body>
+</html>
