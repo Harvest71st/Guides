@@ -18,12 +18,32 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <script type="text/javascript">
+var JpName = {
+    "Floor1" : "1F",
+    "Floor2" : "2F",
+    "Floor3" : "3F",
+    "Floor4" : "4F",
+    "Overviews" : "全体図",
+    "HR" : "HR棟",
+    "Corridor" : "廊下・ピロティ",
+    "Special" : "理科棟・文化棟",
+    "Media" : "メディア棟"
+};
+
 window.onload = function(){
+
+    
+
     var ImageSources = {
-    "Floor1" : "https://drive.google.com/uc?export=view&id=1S53emZ9Zmc8Gkzp1mmbWK7qMtd-jZpKQ",
-    "Floor2" : "https://drive.google.com/uc?export=view&id=1hctluCp9vqIMiCPoLxngOf_bC1gylr_S",
-    "Floor3" : "https://drive.google.com/uc?export=view&id=1Hiyk51fhEGF7wVEXiOCEd-wzMrQciQsW",
-    "Floor4" : "",
+    "Floor1"    : "https://drive.google.com/file/d/1S-gKOAcbsYJNWDsr0zVhcIk3qVZU_bgl/preview",
+    "Floor2"    : "https://drive.google.com/file/d/1RmUbYjGfF8GsJ1UJ_yVyfYoEzjyYWT0t/preview",
+    "Floor3"    : "https://drive.google.com/file/d/1frICyFwms72LasVWRO0tq4lh_5nR0c1j/preview",
+    "Floor4"    : "https://drive.google.com/file/d/1TX_kdOWg8BKVlOvyMpbswCqaRuNlRG9S/preview",
+    "Overviews" : "https://drive.google.com/file/d/19qR2vnr0qU4Uz9zqcv1qmaLidALgv-hT/preview",
+    "HR"        : "https://drive.google.com/file/d/1vWNqXfuOQYCkxW-79jdA00CvN2Q2OV-G/preview",
+    "Corridor"  : "https://drive.google.com/file/d/1FMPXEIoelBY8__pDTfxt2ztgGPkXkDcF/preview",
+    "Special"   : "https://drive.google.com/file/d/1jpi0XodswlaZ8Es8d4w6m0m1t4r72Y6N/preview",
+    "Media"     : "https://drive.google.com/file/d/12yml-UChKVToBGQf1AudcVTeksiXXzFJ/preview"
     };
 
 var urlParam = location.search.substring(1);
@@ -37,53 +57,46 @@ if(urlParam != ""){
     }
 
     if(urlParam.indexOf("locate=") != -1){
+        document.getElementById("NowLocate").innerHTML = JpName[paramArray["locate"]];
         document.getElementById("ImgSource").src = ImageSources[paramArray["locate"]];
+    }
+    else{
+        document.getElementById("NowLocate").innerHTML = "FloorGuide";
     }
 }
 }
 
 </script>
-<style type="text/css">
-    #iframeBlock{
-        height:100%;
-        .iframeBody{
-            height:100%;
-            iframe{
-                border:none;
-                width:100%;
-                height:100%;
-                padding:0;
-                margin:0;
-            }
-        }
-    }
-</style>
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header">  
                     <div class="mdl-layout__header-row">  
                         <!-- Title -->  
-                        <span class="mdl-layout-title">FloorGuide</span>  
+                        <span class="mdl-layout-title">FloorGuide <ui id="NowLocate"></ui></span>  
                         <div class="mdl-layout-spacer"></div>  
                     </div>  
                 </header>  
                 <div class="mdl-layout__drawer">  
-                    <span class="mdl-layout-title">FloorGuide</span>  
+                    <nav class="mdl-navigation">  
+                        <a class="mdl-navigation__link" href="?locate=Overviews">全体図</a>  
+                    </nav>  
+                    <span class="mdl-layout-title">フロア別マップ</span>  
                     <nav class="mdl-navigation">  
                         <a class="mdl-navigation__link" href="?locate=Floor1">1F</a>  
                         <a class="mdl-navigation__link" href="?locate=Floor2">2F</a>  
                         <a class="mdl-navigation__link" href="?locate=Floor3">3F</a>  
                         <a class="mdl-navigation__link" href="?locate=Floor4">4F</a>  
                     </nav>  
+                    <span class="mdl-layout-title">建物別マップ</span>  
+                    <nav class="mdl-navigation">  
+                        <a class="mdl-navigation__link" href="?locate=HR">HR棟</a>  
+                        <a class="mdl-navigation__link" href="?locate=Corridor">廊下・ピロティ</a>  
+                        <a class="mdl-navigation__link" href="?locate=Special">理科棟・文化棟</a>
+                        <a class="mdl-navigation__link" href="?locate=Media">メディア棟</a>  
+                    </nav>  
                 </div>  
                 <main class="mdl-layout">
-                    <div id="iframeBlock">
-                        <div class="iframeBody">
-                                <iframe id="ImgSource" height="1000">
-        
-                                </iframe>
-                        </div>
-                    </div>
+                        <iframe id="ImgSource" width="100%" height="100%"></iframe>
                 </main>
     </div>
       
